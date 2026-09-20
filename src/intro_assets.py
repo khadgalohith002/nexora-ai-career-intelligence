@@ -1,0 +1,1 @@
+# Lightweight Intro Assets Stub
