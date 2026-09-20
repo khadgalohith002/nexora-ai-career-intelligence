@@ -1,4 +1,3 @@
-# NEXORA
 
 ## AI-Powered Career Intelligence Platform
 
@@ -39,3 +38,61 @@ Resume Analysis • ATS Optimization • Job Matching • Career Growth
    ```
 
 3. Open `http://localhost:8501` in your browser.
+         # NEXORA
+
+## AI-Powered Career Intelligence Platform
+
+**Resume Analysis • ATS Optimization • Job Matching • Career Growth**
+
+[🚀 Live Demo](https://nexora-ai-career-intelligence.streamlit.app/) • [💻 Source Code](https://github.com/khadgalohith002/nexora-ai-career-intelligence)
+
+---
+
+## 📌 Overview
+
+**NEXORA** is an AI-powered career intelligence platform designed to help candidates understand, improve, and match their professional profiles with career opportunities.
+
+The platform combines resume analysis, ATS compatibility analysis, AI-powered career insights, skill gap analysis, job matching, resume rewriting, interview preparation, and career planning into a single application.
+
+---
+
+## ✨ Key Features
+
+- 📄 **Resume Analysis** — Extracts resume content, sections, skills, education, experience, projects, and certifications.
+- 🎯 **ATS Analysis** — Evaluates ATS compatibility, keywords, formatting, and resume quality.
+- 🤖 **AI Career Review** — Provides resume-specific strengths, weaknesses, and actionable recommendations.
+- 🧠 **Skill Gap Analysis** — Identifies strong, partial, and missing skills for a target role.
+- 🔍 **Resume vs Job Matcher** — Compares a resume against a specific job description.
+- ✍️ **AI Resume Rewriter** — Generates improved resume content while preserving the candidate's actual information.
+- 🎤 **Interview Questions** — Generates suggested interview questions based on the resume and target role.
+- 🗺️ **Career Roadmap** — Provides a structured path for skill development and career preparation.
+- 💼 **Live Job Search** — Retrieves current job listings through the Adzuna API.
+- 📊 **Resume-to-Job Matching** — Calculates compatibility between the candidate profile and available opportunities.
+- 🗃️ **History & Reports** — Stores analysis history and supports career analysis reporting.
+
+---
+
+## 🔄 How It Works
+
+```text
+Resume Upload
+      ↓
+Document Extraction
+      ↓
+Text Processing
+      ↓
+Skill & Section Detection
+      ↓
+Candidate Profile
+      ↓
+ATS Analysis
+      ↓
+AI Career Intelligence
+      ↓
+Skill Gap & Job Matching
+      ↓
+Resume Improvement
+      ↓
+Career Roadmap
+
+
