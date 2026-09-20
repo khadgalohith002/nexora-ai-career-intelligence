@@ -96,3 +96,4 @@ Resume Improvement
 Career Roadmap
 
 
+![NEXORA Dashboard](nexora-dashboard.png)
