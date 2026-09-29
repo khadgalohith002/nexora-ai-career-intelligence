@@ -159,7 +159,7 @@ def create_gauge_chart(score):
                     "tickcolor": "#64748b",
                 },
                 "bar": {
-                    "color": "#d21f2b",
+                    "color": "#3B82F6",
                 },
                 "bgcolor": "#1a2330",
                 "borderwidth": 0,
@@ -184,24 +184,25 @@ def create_gauge_chart(score):
 st.markdown(
     f"""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap');
 
     :root {{
-        --bg: #040305;
-        --panel: rgba(16, 12, 14, 0.92);
-        --panel-2: rgba(26, 14, 17, 0.95);
-        --line: rgba(255,255,255,0.09);
-        --muted: #9b9193;
-        --text: #f6f1f1;
-        --red: #d21f2b;
-        --red-bright: #ff4652;
+        --bg: #0B1020;
+        --panel: #111827;
+        --panel-2: #172033;
+        --line: #263247;
+        --muted: #94A3B8;
+        --text: #F8FAFC;
+        --blue: #3B82F6;
+        --violet: #8B5CF6;
+        --cyan: #22D3EE;
     }}
 
     .stApp {{
         background:
-            radial-gradient(circle at 78% 7%, rgba(188, 9, 26, 0.22), transparent 28%),
-            radial-gradient(circle at 12% 30%, rgba(112, 8, 19, 0.18), transparent 26%),
-            linear-gradient(180deg, #050406 0%, #030204 55%, #060406 100%);
+            radial-gradient(circle at 78% 7%, rgba(59, 130, 246, 0.12), transparent 28%),
+            radial-gradient(circle at 12% 30%, rgba(139, 92, 246, 0.08), transparent 26%),
+            #0B1020;
         color: var(--text);
         font-family: 'Inter', sans-serif;
     }}
@@ -227,10 +228,13 @@ st.markdown(
 
     .brand-wrap {{ display:flex; align-items:center; gap:14px; }}
     .brand-mark {{
-        width: 46px; height: 30px;
+        width: 42px; height: 42px;
         display:flex; align-items:center; justify-content:center;
-        color:#ff4b55; font-size:24px;
-        filter: drop-shadow(0 0 12px rgba(255,35,50,.45));
+        color:#3B82F6; font-size:22px;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+        border: 1px solid rgba(59, 130, 246, 0.4);
+        border-radius: 10px;
+        box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
     }}
 
     .brand-title {{
@@ -238,317 +242,184 @@ st.markdown(
         font-size: 22px;
         font-weight: 800;
         letter-spacing: -0.5px;
-        color: #fff;
+        color: #F8FAFC;
         line-height: 1.05;
     }}
-    .brand-title span {{ color: #e1333d; }}
+    .brand-title span {{ color: #3B82F6; }}
     .brand-subtitle {{
-        color: #8f8587;
+        color: #94A3B8;
         font-size: 10px;
-        letter-spacing: 2.2px;
+        letter-spacing: 2px;
         text-transform: uppercase;
-        margin-top: 7px;
+        margin-top: 5px;
     }}
     .system-status {{
         display:flex; align-items:center; gap:9px;
-        color:#c9bfc1; font-size:10px; letter-spacing:1.8px;
-        font-weight:700;
+        color:#CBD5E1; font-size:11px; letter-spacing:1.5px;
+        font-weight:600;
     }}
     .status-dot {{
-        width:7px; height:7px; border-radius:50%; background:#f03542;
-        box-shadow:0 0 0 4px rgba(240,53,66,.12), 0 0 14px rgba(240,53,66,.9);
+        width:8px; height:8px; border-radius:50%; background:#22C55E;
+        box-shadow:0 0 0 4px rgba(34, 197, 94, 0.15);
     }}
 
     .command-nav {{
         display:flex; gap:28px; align-items:center;
         padding: 15px 0 18px;
         border-bottom:1px solid var(--line);
-        color:#817779; font-size:10px; font-weight:700;
-        letter-spacing:1.4px; text-transform:uppercase;
+        color:#94A3B8; font-size:11px; font-weight:600;
+        letter-spacing:1.2px; text-transform:uppercase;
         overflow-x:auto;
     }}
-    .command-item {{ white-space:nowrap; }}
-    .command-item.active {{ color:#fff; position:relative; }}
+    .command-item {{ white-space:nowrap; cursor:pointer; }}
+    .command-item.active {{ color:#F8FAFC; position:relative; }}
     .command-item.active:after {{
         content:""; position:absolute; left:0; right:0; bottom:-19px;
-        height:2px; background:#d91f2c; box-shadow:0 0 10px rgba(217,31,44,.8);
+        height:2px; background:#3B82F6; box-shadow:0 0 10px rgba(59,130,246,0.6);
     }}
 
-    /* KEYFRAME ANIMATIONS (60FPS ACCURATE & FAST) */
-    @keyframes batFadeInUp {{
-        0% {{ opacity: 0; transform: translateY(14px); }}
-        100% {{ opacity: 1; transform: translateY(0); }}
-    }}
-
-    @keyframes batGlowPulse {{
-        0% {{ box-shadow: 0 0 15px rgba(255, 45, 60, 0.2); }}
-        50% {{ box-shadow: 0 0 35px rgba(255, 45, 60, 0.55), inset 0 0 15px rgba(255, 45, 60, 0.15); }}
-        100% {{ box-shadow: 0 0 15px rgba(255, 45, 60, 0.2); }}
-    }}
-
-    @keyframes batShimmer {{
-        0% {{ background-position: -200% 0; }}
-        100% {{ background-position: 200% 0; }}
-    }}
-
-    @keyframes batIconFloat {{
-        0% {{ transform: translateY(0px) rotate(0deg); }}
-        50% {{ transform: translateY(-4px) rotate(2deg); }}
-        100% {{ transform: translateY(0px) rotate(0deg); }}
-    }}
-
-    @keyframes batStatusPulse {{
-        0% {{ opacity: 0.6; transform: scale(0.96); }}
-        50% {{ opacity: 1; transform: scale(1.04); }}
-        100% {{ opacity: 0.6; transform: scale(0.96); }}
-    }}
-
-    /* ENHANCED ANIMATED ELEMENTS */
+    /* HERO */
     .hero {{
-        margin: 34px 0 22px;
-        min-height: 320px;
-        padding: 52px 58px;
-        border: 1px solid rgba(255,255,255,.09);
-        border-radius: 8px;
+        margin: 28px 0 22px;
+        min-height: 280px;
+        padding: 44px 48px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
         overflow:hidden;
         position:relative;
-        background:
-            radial-gradient(ellipse at 85% 20%, rgba(255,45,60,0.18) 0%, transparent 60%),
-            linear-gradient(135deg, rgba(12,6,8,.98) 0%, rgba(20,9,13,.95) 50%, rgba(8,4,6,.99) 100%);
-        box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 35px 80px rgba(0,0,0,.45);
-        animation: batFadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        will-change: transform, opacity;
-    }}
-    .hero:before {{
-        content:""; position:absolute; inset:0;
-        background: linear-gradient(115deg, transparent 0 50%, rgba(255,35,45,.06) 50.2%, transparent 51%);
-        pointer-events:none;
-    }}
-    .hero:after {{
-        content:""; position:absolute; width:380px; height:380px; right:-80px; top:-90px;
-        border-radius:50%; border:1px solid rgba(255,67,79,.14);
-        box-shadow: 0 0 0 45px rgba(255,40,55,.025), 0 0 0 90px rgba(255,40,55,.018);
-        animation: batStatusPulse 4s ease-in-out infinite;
-        will-change: transform, opacity;
+        background: linear-gradient(135deg, #111827 0%, #172033 100%);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }}
     .hero-eyebrow {{
         position:relative; z-index:1;
         display:inline-flex; align-items:center; gap:10px;
-        color:#ff4b58; font-size:10px; font-weight:800;
-        letter-spacing:2.5px; text-transform:uppercase; margin-bottom:18px;
+        color:#3B82F6; font-size:11px; font-weight:700;
+        letter-spacing:2px; text-transform:uppercase; margin-bottom:16px;
     }}
-    .hero-eyebrow:before {{ content:""; width:28px; height:1px; background:#ff4b58; }}
+    .hero-eyebrow:before {{ content:""; width:24px; height:2px; background:#3B82F6; }}
     .hero-title {{
         position:relative; z-index:1;
-        margin:0; color:#fff;
+        margin:0; color:#F8FAFC;
         font-family:'Space Grotesk', sans-serif;
-        font-size: clamp(42px, 6vw, 76px);
-        line-height:.93; letter-spacing:-3px; font-weight:800;
-        text-transform:uppercase;
+        font-size: clamp(36px, 5vw, 58px);
+        line-height: 1; letter-spacing: -1.5px; font-weight: 800;
     }}
     .hero-title span {{
-        color:#d92330;
-        background: linear-gradient(90deg, #ff4652, #e1333d, #ff6b75, #e1333d);
-        background-size: 300% 100%;
+        color: #3B82F6;
+        background: linear-gradient(90deg, #3B82F6, #8B5CF6);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: batShimmer 5s linear infinite;
     }}
     .hero-description {{
         position:relative; z-index:1;
-        max-width:640px; margin-top:22px;
-        color:#b8abad; font-size:15px; line-height:1.8;
+        max-width:640px; margin-top:16px;
+        color:#CBD5E1; font-size:14.5px; line-height:1.7;
     }}
 
-    /* FEATURE CARDS WITH FLOATING ICONS & SHIMMER HOVER */
+    /* FEATURE CARDS */
     .feature-card {{
-        background: linear-gradient(145deg, rgba(22, 12, 15, 0.94), rgba(12, 8, 9, 0.95));
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
-        padding: 24px 20px;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        animation: batFadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        will-change: transform, opacity;
+        background: #111827;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 22px 20px;
+        transition: transform 0.2s ease, border-color 0.2s ease;
         position: relative;
-        overflow: hidden;
+        height: 100%;
     }}
     .feature-card:hover {{
-        transform: translateY(-5px) scale(1.01);
-        border-color: rgba(255, 60, 75, 0.6);
-        box-shadow: 0 14px 35px rgba(225, 20, 35, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        border-color: #3B82F6;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }}
     .feature-icon {{
-        font-size: 26px;
-        color: #ff4b55;
-        margin-bottom: 12px;
+        font-size: 24px;
+        color: #3B82F6;
+        margin-bottom: 10px;
         display: inline-block;
-        transition: transform 0.2s ease;
-        animation: batIconFloat 3.5s ease-in-out infinite;
-        will-change: transform;
-    }}
-    .feature-card:hover .feature-icon {{
-        transform: scale(1.2) rotate(-4deg);
-        filter: drop-shadow(0 0 12px rgba(255, 75, 85, 0.9));
     }}
     .feature-title {{
         font-family: 'Space Grotesk', sans-serif;
-        font-size: 16px;
-        font-weight: 800;
-        color: #ffffff;
-        margin-bottom: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #F8FAFC;
+        margin-bottom: 6px;
     }}
     .feature-description {{
-        color: #9e9395;
+        color: #94A3B8;
         font-size: 12.5px;
-        line-height: 1.6;
+        line-height: 1.55;
     }}
 
-    /* STEP CARDS 3D HOVER ANIMATION */
-    .step-box-card {{
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        animation: batFadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        will-change: transform, opacity;
-    }}
-    .step-box-card:hover {{
-        transform: translateY(-5px) !important;
-        border-color: rgba(255, 75, 88, 0.75) !important;
-        box-shadow: 0 16px 35px rgba(220, 25, 40, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    }}
-    .step-num-badge {{
-        transition: all 0.2s ease !important;
-    }}
-    .step-box-card:hover .step-num-badge {{
-        background: linear-gradient(135deg, #e21b28, #ff4d58) !important;
-        color: #ffffff !important;
-        transform: scale(1.12);
-        box-shadow: 0 0 18px rgba(255, 75, 88, 0.8) !important;
-    }}
-
-    /* RESULT & METRIC CARDS ANIMATION */
+    /* RESULT & METRIC CARDS */
     .result-card, .info-card, .input-panel {{
-        background: linear-gradient(145deg, rgba(20, 10, 12, 0.94), rgba(10, 8, 9, 0.94));
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
+        background: #111827;
+        border: 1px solid var(--line);
+        border-radius: 10px;
         padding: 24px;
-        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        animation: batFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        transition: border-color 0.2s ease, transform 0.2s ease;
     }}
     .result-card:hover, .input-panel:hover {{
-        border-color: rgba(255, 60, 75, 0.4);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-        transform: translateY(-4px);
+        border-color: #3B82F6;
     }}
 
-    /* JOB CARDS HOVER ANIMATION */
-    .job-card {{
-        background: linear-gradient(145deg, rgba(24, 12, 15, 0.95), rgba(12, 9, 10, 0.95));
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        border-radius: 8px;
-        padding: 26px;
-        margin-bottom: 16px;
-        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        animation: batFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }}
-    .job-card:hover {{
-        transform: translateY(-6px) scale(1.008);
-        border-color: rgba(255, 75, 88, 0.6);
-        box-shadow: 0 20px 48px rgba(220, 25, 40, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    }}
-    .job-title {{
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 18px;
-        font-weight: 800;
-        color: #ffffff;
-        transition: color 0.25s ease;
-    }}
-    .job-card:hover .job-title {{
-        color: #ff4d58;
-    }}
-
-    /* STREAMLIT BUTTON HOVER & GLOW ANIMATION */
+    /* STREAMLIT BUTTONS */
     div[data-testid="stButton"] button {{
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        position: relative;
-        overflow: hidden;
-    }}
-    div[data-testid="stButton"] button:hover {{
-        transform: translateY(-3px) scale(1.015) !important;
-        box-shadow: 0 12px 30px rgba(226, 27, 40, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+        transition: all 0.2s ease !important;
+        border-radius: 6px !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 600 !important;
     }}
 
-    /* FILE UPLOADER ANIMATED SCANNING GLOW */
+    /* FILE UPLOADER */
     div[data-testid="stFileUploader"] {{
-        border: 1px dashed rgba(255, 75, 88, 0.35) !important;
+        border: 1px dashed var(--line) !important;
         border-radius: 8px !important;
         padding: 12px !important;
-        transition: all 0.3s ease !important;
+        transition: border-color 0.2s ease !important;
     }}
     div[data-testid="stFileUploader"]:hover {{
-        border-color: rgba(255, 75, 88, 0.85) !important;
-        background: rgba(255, 45, 60, 0.04) !important;
-        box-shadow: 0 0 25px rgba(255, 45, 60, 0.18) !important;
+        border-color: #3B82F6 !important;
+        background: rgba(59, 130, 246, 0.04) !important;
     }}
 
-    /* SKILL BADGES MICRO-ANIMATION */
+    /* SKILL BADGES */
     .skill-badge {{
         display: inline-block;
-        padding: 6px 14px;
-        margin: 4px 6px 4px 0;
+        padding: 5px 12px;
+        margin: 3px 5px 3px 0;
         border-radius: 999px;
         font-size: 11.5px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        background: rgba(255, 255, 255, 0.05);
-        color: #e8dedf;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        background: #172033;
+        color: #CBD5E1;
+        border: 1px solid var(--line);
+        transition: transform 0.2s ease;
         cursor: default;
     }}
-    .skill-badge:hover {{
-        transform: scale(1.1) translateY(-2px);
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-    }}
     .matched-badge {{
-        background: rgba(46, 204, 113, 0.14) !important;
-        color: #2ecc71 !important;
-        border: 1px solid rgba(46, 204, 113, 0.4) !important;
-        box-shadow: 0 0 12px rgba(46, 204, 113, 0.2);
-    }}
-    .matched-badge:hover {{
-        background: rgba(46, 204, 113, 0.28) !important;
-        box-shadow: 0 0 20px rgba(46, 204, 113, 0.5) !important;
+        background: rgba(34, 197, 94, 0.12) !important;
+        color: #22C55E !important;
+        border: 1px solid rgba(34, 197, 94, 0.35) !important;
     }}
     .missing-badge {{
-        background: rgba(241, 196, 15, 0.14) !important;
-        color: #f1c40f !important;
-        border: 1px solid rgba(241, 196, 15, 0.4) !important;
-        box-shadow: 0 0 12px rgba(241, 196, 15, 0.2);
-        animation: batStatusPulse 3s infinite ease-in-out;
-    }}
-    .missing-badge:hover {{
-        background: rgba(241, 196, 15, 0.28) !important;
-        box-shadow: 0 0 20px rgba(241, 196, 15, 0.5) !important;
+        background: rgba(245, 158, 11, 0.12) !important;
+        color: #F59E0B !important;
+        border: 1px solid rgba(245, 158, 11, 0.35) !important;
     }}
 
-    /* METRIC CARDS GLASSMORPHIC GLOW */
+    /* METRICS */
     div[data-testid="stMetric"] {{
-        background: linear-gradient(145deg, rgba(24, 12, 15, 0.92), rgba(12, 9, 10, 0.94)) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: #111827 !important;
+        border: 1px solid var(--line) !important;
         border-radius: 8px !important;
         padding: 16px 20px !important;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }}
-    div[data-testid="stMetric"]:hover {{
-        transform: translateY(-4px) !important;
-        border-color: rgba(255, 75, 88, 0.5) !important;
-        box-shadow: 0 14px 32px rgba(225, 20, 35, 0.25) !important;
     }}
 
-    /* STREAMLIT PROGRESS BARS GLOW */
+    /* PROGRESS BARS */
     div[data-testid="stProgress"] > div > div > div > div {{
-        background: linear-gradient(90deg, #d21f2b 0%, #ff4b58 50%, #ff6b75 100%) !important;
+        background: linear-gradient(90deg, #2563EB 0%, #3B82F6 100%) !important;
         border-radius: 999px !important;
-        box-shadow: 0 0 14px rgba(255, 75, 88, 0.7) !important;
     }}
     </style>
     """,
@@ -567,7 +438,7 @@ with header_left:
         f"""
         <div class="app-header" style="border-bottom:none; padding-bottom:0;">
             <div class="brand-wrap">
-                <div class="brand-mark" style="width:42px; height:42px; background:linear-gradient(135deg, #ff2a38, #990011); border-radius:10px; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 0 18px rgba(255,42,56,0.6); font-size:22px;">🤖</div>
+                <div class="brand-mark" style="width:42px; height:42px; background:linear-gradient(135deg, #2563EB, #1E40AF); border-radius:10px; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 0 18px rgba(59,130,246,0.4); font-size:22px;">🤖</div>
                 <div>
                     <div class="brand-title">NEXORA</div>
                     <div class="brand-subtitle">AI-powered career intelligence platform</div>
@@ -613,12 +484,12 @@ st.markdown(
                 </div>
             </div>
             <div style="flex-shrink:0; padding-right:15px; text-align:center;">
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,45,60,0.3); padding: 22px 30px; border-radius: 16px; backdrop-filter: blur(12px); box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,45,60,0.08); text-align: center; min-width:220px;">
-                    <div style="width: 56px; height: 56px; margin: 0 auto 10px; background: radial-gradient(circle, rgba(255,45,60,0.35) 0%, transparent 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,45,60,0.6); box-shadow: 0 0 25px rgba(255,45,60,0.5); font-size: 26px;">
+                <div style="background: #111827; border: 1px solid #263247; padding: 22px 30px; border-radius: 16px; backdrop-filter: blur(12px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); text-align: center; min-width:220px;">
+                    <div style="width: 56px; height: 56px; margin: 0 auto 10px; background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, transparent 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(59,130,246,0.5); box-shadow: 0 0 25px rgba(59,130,246,0.3); font-size: 26px;">
                         🤖
                     </div>
                     <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 800; color: #fff; letter-spacing: 1px; text-transform: uppercase;">NEXORA CORE</div>
-                    <div style="font-size: 11px; color: #ff4b58; font-weight: 700; margin-top: 4px; letter-spacing: 1.5px; text-transform: uppercase;">AI Career Intelligence</div>
+                    <div style="font-size: 11px; color: #3B82F6; font-weight: 700; margin-top: 4px; letter-spacing: 1.5px; text-transform: uppercase;">AI Career Intelligence</div>
                 </div>
             </div>
         </div>
@@ -654,9 +525,9 @@ st.markdown(
     .how-it-works-wrapper {
         margin: 36px 0 20px;
         padding: 32px 28px 20px;
-        background: linear-gradient(145deg, rgba(22, 11, 14, 0.95), rgba(12, 9, 10, 0.95));
-        border: 1px solid rgba(255, 45, 60, 0.2);
-        border-radius: 8px;
+        background: #111827;
+        border: 1px solid #263247;
+        border-radius: 12px;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
     .how-header-wrap {
@@ -665,17 +536,17 @@ st.markdown(
     }
     .how-badge {
         display: inline-block;
-        color: #ff4d58;
+        color: #3B82F6;
         font-size: 11px;
         font-weight: 800;
         letter-spacing: 3px;
         text-transform: uppercase;
         margin-bottom: 8px;
         padding: 4px 14px;
-        background: rgba(220, 25, 40, 0.12);
-        border: 1px solid rgba(255, 60, 75, 0.3);
+        background: rgba(59, 130, 246, 0.12);
+        border: 1px solid rgba(59, 130, 246, 0.3);
         border-radius: 999px;
-        box-shadow: 0 0 16px rgba(255, 45, 60, 0.22);
+        box-shadow: 0 0 16px rgba(59, 130, 246, 0.15);
     }
     .how-main-title {
         font-family: 'Space Grotesk', sans-serif;
@@ -685,15 +556,15 @@ st.markdown(
         margin: 4px 0 8px;
     }
     .how-sub-title {
-        color: #a89d9f;
+        color: #94A3B8;
         font-size: 13.5px;
         max-width: 580px;
         margin: 0 auto;
     }
     .step-box-card {
-        background: linear-gradient(145deg, rgba(28, 15, 17, 0.94), rgba(13, 10, 11, 0.94));
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        border-radius: 6px;
+        background: #172033;
+        border: 1px solid #263247;
+        border-radius: 8px;
         padding: 18px 14px 14px;
         min-height: 230px;
         display: flex;
@@ -702,12 +573,12 @@ st.markdown(
         margin-bottom: 10px;
     }
     .step-box-card.completed {
-        border-color: rgba(46, 204, 113, 0.4);
-        box-shadow: inset 0 0 15px rgba(46, 204, 113, 0.1);
+        border-color: rgba(34, 197, 94, 0.4);
+        box-shadow: inset 0 0 15px rgba(34, 197, 94, 0.1);
     }
     .step-box-card.active-step {
-        border-color: rgba(255, 60, 75, 0.55);
-        box-shadow: 0 0 20px rgba(255, 45, 60, 0.25);
+        border-color: rgba(59, 130, 246, 0.6);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
     }
     .step-num-badge {
         display: inline-flex;
@@ -715,9 +586,9 @@ st.markdown(
         justify-content: center;
         width: 32px;
         height: 32px;
-        background: rgba(220, 25, 40, 0.2);
-        border: 1px solid rgba(255, 75, 88, 0.45);
-        color: #ff5a64;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.4);
+        color: #3B82F6;
         font-size: 12px;
         font-weight: 900;
         border-radius: 50%;
@@ -732,7 +603,7 @@ st.markdown(
         margin-bottom: 8px;
     }
     .step-box-desc {
-        color: #9e9395;
+        color: #94A3B8;
         font-size: 11px;
         line-height: 1.55;
     }
@@ -746,9 +617,9 @@ st.markdown(
         border-radius: 4px;
         margin-top: 10px;
     }
-    .chip-complete { background: rgba(46, 204, 113, 0.18); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.35); }
-    .chip-active { background: rgba(255, 75, 88, 0.2); color: #ff5a64; border: 1px solid rgba(255, 75, 88, 0.4); }
-    .chip-waiting { background: rgba(255, 255, 255, 0.05); color: #7f7577; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .chip-complete { background: rgba(34, 197, 94, 0.18); color: #22C55E; border: 1px solid rgba(34, 197, 94, 0.35); }
+    .chip-active { background: rgba(59, 130, 246, 0.2); color: #3B82F6; border: 1px solid rgba(59, 130, 246, 0.4); }
+    .chip-waiting { background: rgba(255, 255, 255, 0.05); color: #64748B; border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 
     <div class="how-it-works-wrapper">
@@ -863,14 +734,14 @@ st.markdown(
     <div style="
         display:flex; justify-content:center; align-items:center; gap:18px;
         margin:15px 0 25px; padding:12px 24px;
-        background:linear-gradient(90deg, rgba(28,15,17,0.85), rgba(13,10,11,0.85));
-        border:1px solid rgba(255,60,75,0.25); border-radius:30px;
+        background:#111827;
+        border:1px solid #263247; border-radius:30px;
     ">
-        <span style="color:#ff5a64; font-weight:800; font-size:12px; letter-spacing:1px;">📄 UPLOAD</span>
-        <span style="color:#665557;">→</span>
-        <span style="color:#ff5a64; font-weight:800; font-size:12px; letter-spacing:1px;">🧠 ANALYZE</span>
-        <span style="color:#665557;">→</span>
-        <span style="color:#ff5a64; font-weight:800; font-size:12px; letter-spacing:1px;">📊 RESULTS</span>
+        <span style="color:#3B82F6; font-weight:800; font-size:12px; letter-spacing:1px;">📄 UPLOAD</span>
+        <span style="color:#64748B;">→</span>
+        <span style="color:#3B82F6; font-weight:800; font-size:12px; letter-spacing:1px;">🧠 ANALYZE</span>
+        <span style="color:#64748B;">→</span>
+        <span style="color:#3B82F6; font-weight:800; font-size:12px; letter-spacing:1px;">📊 RESULTS</span>
     </div>
     """,
     unsafe_allow_html=True,
@@ -1165,15 +1036,15 @@ def render_pending_card(tab_name):
         f"""
         <div style="
             margin: 25px 0; padding: 40px 30px; text-align: center;
-            background: linear-gradient(145deg, rgba(22, 11, 14, 0.95), rgba(12, 9, 10, 0.95));
-            border: 1px dashed rgba(255, 45, 60, 0.35); border-radius: 12px;
+            background: #111827;
+            border: 1px dashed #263247; border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         ">
             <div style="font-size: 38px; margin-bottom: 12px;">⚡</div>
             <h3 style="color:#ffffff; font-family:'Space Grotesk', sans-serif; font-size:22px; margin-bottom:8px;">
                 Resume Intelligence Pending for {tab_name}
             </h3>
-            <p style="color:#a89d9f; font-size:14px; max-width:580px; margin: 0 auto 20px;">
+            <p style="color:#94A3B8; font-size:14px; max-width:580px; margin: 0 auto 20px;">
                 Upload your resume PDF/DOCX in the <b>Resume Intelligence Workspace</b> above and click <b>ANALYZE MY RESUME</b> to unlock AI insights, ATS scoring, and custom recommendations.
             </p>
         </div>
@@ -1950,23 +1821,23 @@ elif selected_tab == "👤 Profile":
             <div class="result-card">
                 <h3 style="margin-top:0; color:#fff;">🗺️ Career Development Roadmap</h3>
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; text-align:center; padding:15px 0;">
-                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:14px 16px; flex:1; min-width:130px;">
-                        <div style="color:#ff5a64; font-size:10px; font-weight:800; text-transform:uppercase;">01 CURRENT LEVEL</div>
+                    <div style="background:#172033; border:1px solid #263247; border-radius:8px; padding:14px 16px; flex:1; min-width:130px;">
+                        <div style="color:#3B82F6; font-size:10px; font-weight:800; text-transform:uppercase;">01 CURRENT LEVEL</div>
                         <div style="color:#fff; font-weight:800; margin-top:6px; font-size:13px;">{candidate_level}</div>
                     </div>
-                    <div style="color:#ff4b58; font-size:18px; font-weight:900;">→</div>
-                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:14px 16px; flex:1; min-width:130px;">
-                        <div style="color:#ff5a64; font-size:10px; font-weight:800; text-transform:uppercase;">02 TARGET ROLE</div>
+                    <div style="color:#3B82F6; font-size:18px; font-weight:900;">→</div>
+                    <div style="background:#172033; border:1px solid #263247; border-radius:8px; padding:14px 16px; flex:1; min-width:130px;">
+                        <div style="color:#3B82F6; font-size:10px; font-weight:800; text-transform:uppercase;">02 TARGET ROLE</div>
                         <div style="color:#fff; font-weight:800; margin-top:6px; font-size:13px;">{target_job or job_category}</div>
                     </div>
-                    <div style="color:#ff4b58; font-size:18px; font-weight:900;">→</div>
-                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:14px 16px; flex:1; min-width:130px;">
-                        <div style="color:#ff5a64; font-size:10px; font-weight:800; text-transform:uppercase;">03 SKILL GAPS</div>
+                    <div style="color:#3B82F6; font-size:18px; font-weight:900;">→</div>
+                    <div style="background:#172033; border:1px solid #263247; border-radius:8px; padding:14px 16px; flex:1; min-width:130px;">
+                        <div style="color:#3B82F6; font-size:10px; font-weight:800; text-transform:uppercase;">03 SKILL GAPS</div>
                         <div style="color:#fff; font-weight:800; margin-top:6px; font-size:13px;">{len(missing_skills)} Gaps</div>
                     </div>
-                    <div style="color:#ff4b58; font-size:18px; font-weight:900;">→</div>
-                    <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:14px 16px; flex:1; min-width:130px;">
-                        <div style="color:#ff5a64; font-size:10px; font-weight:800; text-transform:uppercase;">04 OPPORTUNITIES</div>
+                    <div style="color:#3B82F6; font-size:18px; font-weight:900;">→</div>
+                    <div style="background:#172033; border:1px solid #263247; border-radius:8px; padding:14px 16px; flex:1; min-width:130px;">
+                        <div style="color:#3B82F6; font-size:10px; font-weight:800; text-transform:uppercase;">04 OPPORTUNITIES</div>
                         <div style="color:#fff; font-weight:800; margin-top:6px; font-size:13px;">Adzuna Live Search</div>
                     </div>
                 </div>
@@ -1992,10 +1863,10 @@ st.markdown(
 
     <div style="
         text-align:center;
-        color:#667386;
+        color:#64748B;
         font-size:12px;
         padding:25px 0;
-        border-top:1px solid #1f2937;
+        border-top:1px solid #263247;
     ">
 
         NEXORA

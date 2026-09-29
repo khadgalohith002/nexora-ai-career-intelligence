@@ -31,35 +31,35 @@ def render_interview_tab(analysis_data, resume_id=None):
     st.markdown("""
         <style>
         .suggested-header-card {
-            background: linear-gradient(135deg, rgba(28, 12, 16, 0.95), rgba(12, 8, 10, 0.95));
-            border: 1px solid rgba(255, 45, 60, 0.35);
+            background: #111827;
+            border: 1px solid #263247;
             border-radius: 12px;
             padding: 24px 28px;
             margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,45,60,0.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         .ai-aware-badge {
             display: inline-block;
-            color: #ff4d58;
+            color: #3B82F6;
             font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 3px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
             padding: 4px 14px;
-            background: rgba(220, 25, 40, 0.15);
-            border: 1px solid rgba(255, 60, 75, 0.35);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
             border-radius: 999px;
             margin-bottom: 10px;
         }
         .suggested-main-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(24px, 3.2vw, 34px);
-            font-weight: 900;
-            color: #ffffff;
+            font-weight: 800;
+            color: #F8FAFC;
             margin: 0 0 6px 0;
         }
         .suggested-main-sub {
-            color: #b8acae;
+            color: #CBD5E1;
             font-size: 14px;
             margin-bottom: 16px;
         }
@@ -69,24 +69,28 @@ def render_interview_tab(analysis_data, resume_id=None):
             flex-wrap: wrap;
         }
         .info-pill-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #172033;
+            border: 1px solid #263247;
             border-radius: 6px;
             padding: 6px 14px;
             font-size: 12px;
-            color: #e0e0e0;
+            color: #CBD5E1;
         }
         .info-pill-item b {
-            color: #ff4d58;
+            color: #3B82F6;
         }
         .q-card-premium {
-            background: linear-gradient(145deg, rgba(32, 16, 20, 0.95), rgba(16, 10, 12, 0.95));
-            border: 1px solid rgba(255, 45, 60, 0.3);
+            background: #172033;
+            border: 1px solid #263247;
             border-radius: 10px;
             padding: 20px 24px;
             margin-bottom: 14px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
             transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .q-card-premium:hover {
+            transform: translateY(-2px);
+            border-color: #3B82F6;
         }
         .q-card-header {
             display: flex;
@@ -96,35 +100,35 @@ def render_interview_tab(analysis_data, resume_id=None):
         }
         .q-number-lbl {
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 900;
-            color: #ff4d58;
+            font-weight: 800;
+            color: #3B82F6;
             font-size: 16px;
         }
         .q-category-tag {
-            background: rgba(220, 25, 40, 0.2);
-            border: 1px solid rgba(255, 75, 88, 0.45);
-            color: #ff4d58;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #3B82F6;
             font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
             padding: 3px 10px;
-            border-radius: 4px;
+            border-radius: 999px;
         }
         .q-priority-tag {
             font-size: 11px;
-            font-weight: 800;
+            font-weight: 700;
             padding: 3px 8px;
             border-radius: 4px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #f1c40f;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(245, 158, 11, 0.15);
+            color: #F59E0B;
+            border: 1px solid rgba(245, 158, 11, 0.3);
         }
         .q-body-text {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(15px, 1.8vw, 19px);
             font-weight: 700;
-            color: #ffffff;
+            color: #F8FAFC;
             line-height: 1.4;
             margin-bottom: 12px;
         }
@@ -132,15 +136,15 @@ def render_interview_tab(analysis_data, resume_id=None):
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 45, 60, 0.25);
+            background: #111827;
+            border: 1px solid #263247;
             border-radius: 6px;
             padding: 4px 10px;
             font-size: 12px;
-            color: #b8acae;
+            color: #CBD5E1;
         }
         .based-on-footer b {
-            color: #ff525e;
+            color: #3B82F6;
         }
         </style>
     """, unsafe_allow_html=True)

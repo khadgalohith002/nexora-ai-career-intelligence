@@ -27,136 +27,135 @@ def render_ai_review_tab(ai_review, target_job="Target Role"):
     st.markdown("""
         <style>
         .review-header-box {
-            background: linear-gradient(135deg, rgba(30, 15, 20, 0.95), rgba(15, 10, 12, 0.95));
-            border: 1px solid rgba(255, 45, 60, 0.35);
+            background: #111827;
+            border: 1px solid #263247;
             border-radius: 12px;
             padding: 24px 28px;
             margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,45,60,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         .review-title-badge {
             display: inline-block;
-            color: #ff4d58;
+            color: #3B82F6;
             font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 3px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
             padding: 4px 14px;
-            background: rgba(220, 25, 40, 0.15);
-            border: 1px solid rgba(255, 60, 75, 0.35);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
             border-radius: 999px;
             margin-bottom: 10px;
         }
         .candidate-hero-name {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(24px, 3vw, 34px);
-            font-weight: 900;
-            color: #ffffff;
+            font-weight: 800;
+            color: #F8FAFC;
             margin: 0 0 6px 0;
         }
         .target-role-sub {
-            color: #b8acae;
+            color: #CBD5E1;
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         .score-card-main {
-            background: linear-gradient(145deg, rgba(40, 18, 22, 0.9), rgba(20, 12, 14, 0.9));
-            border: 1px solid rgba(255, 45, 60, 0.4);
+            background: #172033;
+            border: 1px solid #263247;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
         .score-val-big {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 44px;
-            font-weight: 900;
-            color: #ff4d58;
-            text-shadow: 0 0 20px rgba(255,77,88,0.6);
+            font-weight: 800;
+            color: #3B82F6;
             line-height: 1.1;
         }
         .score-val-medium {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 26px;
             font-weight: 800;
-            color: #ffffff;
+            color: #F8FAFC;
             line-height: 1.1;
         }
         .score-lbl-sub {
-            color: #a89d9f;
+            color: #94A3B8;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-top: 6px;
         }
         .evidence-card {
-            background: rgba(22, 14, 16, 0.85);
-            border-left: 3px solid #2ecc71;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            border-right: 1px solid rgba(255,255,255,0.06);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: #172033;
+            border-left: 3px solid #22C55E;
+            border-top: 1px solid #263247;
+            border-right: 1px solid #263247;
+            border-bottom: 1px solid #263247;
             border-radius: 6px;
             padding: 14px 16px;
             margin-bottom: 12px;
         }
         .weakness-card {
-            background: rgba(22, 14, 16, 0.85);
-            border-left: 3px solid #f1c40f;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            border-right: 1px solid rgba(255,255,255,0.06);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: #172033;
+            border-left: 3px solid #F59E0B;
+            border-top: 1px solid #263247;
+            border-right: 1px solid #263247;
+            border-bottom: 1px solid #263247;
             border-radius: 6px;
             padding: 14px 16px;
             margin-bottom: 12px;
         }
         .card-item-title {
-            font-weight: 800;
+            font-weight: 700;
             font-size: 14px;
-            color: #ffffff;
+            color: #F8FAFC;
             margin-bottom: 4px;
         }
         .card-item-body {
             font-size: 13px;
-            color: #b8acae;
-            line-height: 1.4;
+            color: #CBD5E1;
+            line-height: 1.5;
         }
         .skill-pill-green {
             display: inline-block;
-            background: rgba(46, 204, 113, 0.15);
-            color: #2ecc71;
-            border: 1px solid rgba(46, 204, 113, 0.35);
+            background: rgba(34, 197, 94, 0.15);
+            color: #22C55E;
+            border: 1px solid rgba(34, 197, 94, 0.35);
             border-radius: 999px;
             padding: 4px 12px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             margin: 3px;
         }
         .skill-pill-yellow {
             display: inline-block;
-            background: rgba(241, 196, 15, 0.15);
-            color: #f1c40f;
-            border: 1px solid rgba(241, 196, 15, 0.35);
+            background: rgba(245, 158, 11, 0.15);
+            color: #F59E0B;
+            border: 1px solid rgba(245, 158, 11, 0.35);
             border-radius: 999px;
             padding: 4px 12px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             margin: 3px;
         }
         .skill-pill-red {
             display: inline-block;
-            background: rgba(231, 76, 60, 0.15);
-            color: #e74c3c;
-            border: 1px solid rgba(231, 76, 60, 0.35);
+            background: rgba(239, 68, 68, 0.15);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.35);
             border-radius: 999px;
             padding: 4px 12px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             margin: 3px;
         }
         .project-block-card {
-            background: linear-gradient(145deg, rgba(26, 15, 18, 0.9), rgba(14, 10, 12, 0.9));
-            border: 1px solid rgba(255, 45, 60, 0.25);
+            background: #172033;
+            border: 1px solid #263247;
             border-radius: 8px;
             padding: 18px;
             margin-bottom: 16px;
@@ -164,13 +163,13 @@ def render_ai_review_tab(ai_review, target_job="Target Role"):
         .proj-name-heading {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 16px;
-            font-weight: 800;
-            color: #ffffff;
+            font-weight: 700;
+            color: #F8FAFC;
             margin-bottom: 8px;
         }
         .action-step-card {
-            background: linear-gradient(145deg, rgba(28, 16, 19, 0.9), rgba(15, 11, 13, 0.9));
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #172033;
+            border: 1px solid #263247;
             border-radius: 8px;
             padding: 16px;
             display: flex;
@@ -179,10 +178,10 @@ def render_ai_review_tab(ai_review, target_job="Target Role"):
             margin-bottom: 12px;
         }
         .step-num-circle {
-            background: rgba(220, 25, 40, 0.2);
-            border: 1px solid rgba(255, 75, 88, 0.5);
-            color: #ff4d58;
-            font-weight: 900;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #3B82F6;
+            font-weight: 800;
             font-size: 14px;
             width: 36px;
             height: 36px;

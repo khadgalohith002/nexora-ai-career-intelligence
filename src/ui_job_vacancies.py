@@ -16,7 +16,7 @@ def render_job_vacancies_tab(analysis_data=None):
     Guarantees fresh, uncached Adzuna API job searches on every explicit search or refresh.
     """
     st.markdown(
-        '<div style="background: linear-gradient(135deg, rgba(20, 9, 13, 0.98) 0%, rgba(10, 5, 8, 0.99) 100%); border: 1px solid rgba(255, 45, 60, 0.3); border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"><div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;"><div style="display: flex; align-items: center; gap: 12px;"><span style="font-size: 28px;">💼</span><div><h2 style="color: #ffffff; font-family: \'Space Grotesk\', sans-serif; font-size: 26px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">LIVE JOB SEARCH</h2><p style="color: #b8abad; font-size: 14px; margin: 4px 0 0 0;">Latest listings returned by Adzuna across India, matched against your resume.</p></div></div><div style="font-size: 11px; color: #64748b; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);">Source: <strong>Adzuna</strong></div></div></div>',
+        '<div style="background: #111827; border: 1px solid #263247; border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"><div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;"><div style="display: flex; align-items: center; gap: 12px;"><span style="font-size: 28px;">💼</span><div><h2 style="color: #F8FAFC; font-family: \'Space Grotesk\', sans-serif; font-size: 26px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">LIVE JOB SEARCH</h2><p style="color: #CBD5E1; font-size: 14px; margin: 4px 0 0 0;">Latest listings returned by Adzuna across India, matched against your resume.</p></div></div><div style="font-size: 11px; color: #94A3B8; background: #172033; padding: 6px 12px; border-radius: 6px; border: 1px solid #263247;">Source: <strong>Adzuna</strong></div></div></div>',
         unsafe_allow_html=True
     )
 
@@ -323,23 +323,23 @@ def render_job_vacancies_tab(analysis_data=None):
 
         # Single-line Match Badge HTML
         if has_analysis and j_match is not None:
-            match_badge_html = f'<div style="background: rgba(255, 45, 60, 0.15); border: 1px solid rgba(255, 45, 60, 0.4); color: #ff4d58; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 13px; font-family: \'Space Grotesk\', sans-serif;">🎯 RESUME MATCH: {j_match}%</div>'
+            match_badge_html = f'<div style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.4); color: #3B82F6; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 13px; font-family: \'Space Grotesk\', sans-serif;">🎯 RESUME MATCH: {j_match}%</div>'
         else:
-            match_badge_html = '<div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: #94a3b8; padding: 6px 14px; border-radius: 20px; font-weight: 600; font-size: 12px;">💡 Upload a resume to unlock match score</div>'
+            match_badge_html = '<div style="background: #172033; border: 1px solid #263247; color: #94A3B8; padding: 6px 14px; border-radius: 20px; font-weight: 600; font-size: 12px;">💡 Upload a resume to unlock match score</div>'
 
         clean_desc = j_desc[:320] + ('...' if len(j_desc) > 320 else '')
 
         # Construct single-line card HTML to avoid Streamlit code block parsing
         card_html = (
-            f'<div style="background: rgba(18, 9, 12, 0.95); border: 1px solid rgba(255, 45, 60, 0.25); border-radius: 12px; padding: 22px; margin-bottom: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">'
+            f'<div style="background: #172033; border: 1px solid #263247; border-radius: 12px; padding: 22px; margin-bottom: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">'
             f'<div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">'
-            f'<div><div style="font-family: \'Space Grotesk\', sans-serif; font-size: 18px; font-weight: 800; color: #ffffff; margin-bottom: 4px;">💼 {j_title}</div><div style="color: #ff4d58; font-size: 14px; font-weight: 700;">🏢 {j_company}</div></div>'
+            f'<div><div style="font-family: \'Space Grotesk\', sans-serif; font-size: 18px; font-weight: 800; color: #F8FAFC; margin-bottom: 4px;">💼 {j_title}</div><div style="color: #3B82F6; font-size: 14px; font-weight: 700;">🏢 {j_company}</div></div>'
             f'{match_badge_html}'
             f'</div>'
-            f'<div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: #cbd5e1;">'
+            f'<div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: #CBD5E1;">'
             f'<span>📍 {j_location}</span><span>💰 {j_salary}</span><span>📅 {posted_date_str}</span><span>Source: Adzuna</span><span>🏷️ {j_category}</span>'
             f'</div>'
-            f'<div style="color: #b8abad; font-size: 13px; line-height: 1.6; margin-bottom: 14px;">{clean_desc}</div>'
+            f'<div style="color: #94A3B8; font-size: 13px; line-height: 1.6; margin-bottom: 14px;">{clean_desc}</div>'
             f'</div>'
         )
 
@@ -350,22 +350,22 @@ def render_job_vacancies_tab(analysis_data=None):
             exp_col, skills_col = st.columns([1, 1], gap="medium")
 
             with exp_col:
-                st.markdown("<div style='font-size:12px; font-weight:700; color:#ff4d58; text-transform:uppercase; margin-bottom:6px;'>WHY THIS JOB MATCHES YOU</div>", unsafe_allow_html=True)
+                st.markdown("<div style='font-size:12px; font-weight:700; color:#3B82F6; text-transform:uppercase; margin-bottom:6px;'>WHY THIS JOB MATCHES YOU</div>", unsafe_allow_html=True)
                 for why in j_why[:3]:
-                    st.markdown(f"<div style='font-size:11px; color:#e2e8f0; margin-bottom:4px;'>✓ {why}</div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='font-size:11px; color:#CBD5E1; margin-bottom:4px;'>✓ {why}</div>", unsafe_allow_html=True)
 
             with skills_col:
                 if j_matching_skills:
-                    m_chips = "".join([f'<span style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; margin-right:4px; margin-bottom:4px; display:inline-block;">✓ {s}</span>' for s in j_matching_skills[:5]])
-                    st.markdown(f"<div style='margin-bottom:6px;'><b style='color:#10b981; font-size:11px;'>MATCHING SKILLS:</b><br>{m_chips}</div>", unsafe_allow_html=True)
+                    m_chips = "".join([f'<span style="background:rgba(34,197,94,0.15); color:#22C55E; border:1px solid rgba(34,197,94,0.3); border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; margin-right:4px; margin-bottom:4px; display:inline-block;">✓ {s}</span>' for s in j_matching_skills[:5]])
+                    st.markdown(f"<div style='margin-bottom:6px;'><b style='color:#22C55E; font-size:11px;'>MATCHING SKILLS:</b><br>{m_chips}</div>", unsafe_allow_html=True)
 
                 if j_partial_matches:
-                    p_chips = "".join([f'<span style="background:rgba(245,158,11,0.15); color:#f59e0b; border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; margin-right:4px; margin-bottom:4px; display:inline-block;">⚠ {p["skill"]}</span>' for p in j_partial_matches[:3]])
-                    st.markdown(f"<div style='margin-bottom:6px;'><b style='color:#f59e0b; font-size:11px;'>PARTIAL MATCHES:</b><br>{p_chips}</div>", unsafe_allow_html=True)
+                    p_chips = "".join([f'<span style="background:rgba(245,158,11,0.15); color:#F59E0B; border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; margin-right:4px; margin-bottom:4px; display:inline-block;">⚠ {p["skill"]}</span>' for p in j_partial_matches[:3]])
+                    st.markdown(f"<div style='margin-bottom:6px;'><b style='color:#F59E0B; font-size:11px;'>PARTIAL MATCHES:</b><br>{p_chips}</div>", unsafe_allow_html=True)
 
                 if j_skill_gaps:
                     g_chips = "".join([f'<span style="background:rgba(239,68,68,0.15); color:#fca5a5; border:1px solid rgba(239,68,68,0.3); border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; margin-right:4px; margin-bottom:4px; display:inline-block;">{g["priority"]} {g["skill"]}</span>' for g in j_skill_gaps[:4]])
-                    st.markdown(f"<div style='margin-bottom:6px;'><b style='color:#ef4444; font-size:11px;'>SKILL GAPS:</b><br>{g_chips}</div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='margin-bottom:6px;'><b style='color:#EF4444; font-size:11px;'>SKILL GAPS:</b><br>{g_chips}</div>", unsafe_allow_html=True)
 
         # Real Adzuna redirect URL link button
         if j_url:
@@ -375,4 +375,4 @@ def render_job_vacancies_tab(analysis_data=None):
                 key=f"btn_apply_job_{job.get('id', idx)}_{idx}"
             )
 
-        st.markdown("<hr style='border:none; border-top:1px solid rgba(255,255,255,0.06); margin:18px 0;'>", unsafe_allow_html=True)
+        st.markdown("<hr style='border:none; border-top:1px solid #263247; margin:18px 0;'>", unsafe_allow_html=True)

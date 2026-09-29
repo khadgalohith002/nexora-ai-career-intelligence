@@ -13,22 +13,22 @@ def render_cinematic_intro():
         return
 
     intro_html = """<style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=Inter:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 .cinematic-intro-wrapper {
     position: relative;
     width: 100%;
     min-height: 85vh;
-    background: radial-gradient(circle at 50% 40%, #150a0d 0%, #080406 60%, #020102 100%);
+    background: radial-gradient(circle at 50% 35%, #111827 0%, #0B1020 70%, #070A14 100%);
     border-radius: 12px;
-    border: 1px solid rgba(255, 45, 60, 0.3);
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.95), inset 0 0 50px rgba(220, 20, 35, 0.15);
+    border: 1px solid #263247;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     padding: 50px 20px;
     margin-top: 10px;
 }
@@ -36,20 +36,19 @@ def render_cinematic_intro():
 /* Ambient glow lighting */
 .intro-bg-glow {
     position: absolute;
-    width: 130vw;
-    height: 130vh;
-    background: radial-gradient(circle at 50% 45%, rgba(255, 30, 48, 0.28) 0%, rgba(130, 10, 20, 0.14) 40%, rgba(2, 1, 2, 0.98) 75%);
+    width: 120vw;
+    height: 120vh;
+    background: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 40%, transparent 70%);
     pointer-events: none;
-    animation: pulseGlow 4s ease-in-out infinite alternate;
 }
 
 .intro-grid {
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(rgba(255, 45, 60, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 45, 60, 0.05) 1px, transparent 1px);
-    background-size: 45px 45px;
+        linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
     mask-image: radial-gradient(circle at 50% 45%, black 40%, transparent 80%);
     -webkit-mask-image: radial-gradient(circle at 50% 45%, black 40%, transparent 80%);
     pointer-events: none;
@@ -70,8 +69,8 @@ def render_cinematic_intro():
 
 .neural-core-wrap {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,43 +80,40 @@ def render_cinematic_intro():
 }
 
 .neural-orb {
-    width: 110px;
-    height: 110px;
-    background: radial-gradient(circle at 35% 35%, #ff4d58 0%, #b80c17 60%, #4a0208 100%);
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 50px rgba(255, 45, 60, 0.9), inset 0 0 25px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
     position: relative;
     z-index: 5;
-    animation: orbPulse 2s ease-in-out infinite alternate;
-    will-change: box-shadow;
 }
 
 .orb-icon {
-    font-size: 48px;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+    font-size: 44px;
 }
 
 .orbit-ring {
     position: absolute;
-    width: 170px;
-    height: 170px;
-    border: 2px dashed rgba(255, 75, 88, 0.6);
+    width: 155px;
+    height: 155px;
+    border: 2px dashed rgba(59, 130, 246, 0.4);
     border-radius: 50%;
-    animation: spinRing 8s linear infinite;
+    animation: spinRing 12s linear infinite;
     will-change: transform;
     pointer-events: none;
 }
 
 .orbit-ring-outer {
     position: absolute;
-    width: 210px;
-    height: 210px;
-    border: 1px solid rgba(255, 45, 60, 0.25);
+    width: 190px;
+    height: 190px;
+    border: 1px solid rgba(139, 92, 246, 0.25);
     border-radius: 50%;
-    animation: spinRingReverse 12s linear infinite;
+    animation: spinRingReverse 18s linear infinite;
     will-change: transform;
     pointer-events: none;
 }
@@ -125,7 +121,7 @@ def render_cinematic_intro():
 /* Floating feature badges */
 .floating-features {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 24px;
@@ -136,43 +132,27 @@ def render_cinematic_intro():
 }
 
 .feature-pill {
-    background: rgba(26, 14, 17, 0.85);
-    border: 1px solid rgba(255, 45, 60, 0.3);
+    background: #172033;
+    border: 1px solid #263247;
     border-radius: 999px;
     padding: 8px 18px;
-    color: #e0e0e0;
+    color: #CBD5E1;
     font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .feature-pill:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 77, 88, 0.6);
+    border-color: #3B82F6;
 }
 
 .feature-pill span {
-    color: #ff4d58;
-}
-
-/* Light Sweep Beam */
-.sweep-beam {
-    position: absolute;
-    top: -50%;
-    left: -150%;
-    width: 60%;
-    height: 200%;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.65) 50%, transparent 100%);
-    transform: rotate(25deg);
-    animation: sweepAction 0.6s ease-in-out 0.25s forwards;
-    will-change: transform, opacity, left;
-    pointer-events: none;
-    z-index: 25;
+    color: #3B82F6;
 }
 
 /* Typography Stage */
@@ -188,33 +168,30 @@ def render_cinematic_intro():
 
 .status-badge {
     display: inline-block;
-    color: #ff4d58;
+    color: #3B82F6;
     font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 3px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 14px;
     padding: 5px 16px;
-    background: rgba(220, 25, 40, 0.14);
-    border: 1px solid rgba(255, 60, 75, 0.35);
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 999px;
-    box-shadow: 0 0 18px rgba(255, 45, 60, 0.25);
 }
 
 .title-main {
+    font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(32px, 5vw, 48px);
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: 4px;
-    text-transform: uppercase;
+    font-weight: 800;
+    color: #F8FAFC;
+    letter-spacing: 2px;
     line-height: 1.08;
     margin: 0;
-    text-shadow: 0 0 40px rgba(255, 40, 55, 0.7);
 }
 
 .title-main span {
-    color: #e22230;
-    background: linear-gradient(135deg, #ff525e 0%, #d61a27 100%);
+    background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -223,8 +200,8 @@ def render_cinematic_intro():
     font-family: 'Inter', sans-serif;
     font-size: clamp(13px, 2vw, 15px);
     font-weight: 600;
-    color: #b8acae;
-    letter-spacing: 2px;
+    color: #CBD5E1;
+    letter-spacing: 1.5px;
     margin-top: 14px;
     opacity: 0;
     animation: revealSub 0.35s ease-out 0.25s forwards;
@@ -233,14 +210,8 @@ def render_cinematic_intro():
 
 /* Keyframe Animations */
 @keyframes revealNeuralCore {
-    0% { transform: scale(0.6) translateY(20px); opacity: 0; }
-    70% { transform: scale(1.04) translateY(-2px); opacity: 1; }
-    100% { transform: scale(1) translateY(0); opacity: 1; }
-}
-
-@keyframes orbPulse {
-    0% { box-shadow: 0 0 35px rgba(255, 45, 60, 0.75); }
-    100% { box-shadow: 0 0 65px rgba(255, 77, 88, 0.95), 0 0 20px rgba(255, 255, 255, 0.5); }
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes spinRing {
@@ -258,47 +229,35 @@ def render_cinematic_intro():
     100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes sweepAction {
-    0% { left: -150%; opacity: 0; }
-    30% { opacity: 0.9; }
-    100% { left: 200%; opacity: 0; }
-}
-
 @keyframes revealText {
-    0% { opacity: 0; transform: translateY(16px) scale(0.98); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes revealSub {
     0% { opacity: 0; transform: translateY(8px); }
-    100% { opacity: 0.9; transform: translateY(0); }
-}
-
-@keyframes pulseGlow {
-    0% { opacity: 0.85; transform: scale(1); }
-    100% { opacity: 1.15; transform: scale(1.03); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 div[data-testid="stButton"] button {
-    background: linear-gradient(135deg, #e21b28 0%, #b80c17 100%) !important;
+    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%) !important;
     color: #ffffff !important;
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-weight: 800 !important;
-    font-size: 15px !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
-    border: 1px solid #ff4d58 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    letter-spacing: 1px !important;
+    border: 1px solid #3B82F6 !important;
     border-radius: 6px !important;
-    padding: 14px 28px !important;
-    box-shadow: 0 0 25px rgba(226, 27, 40, 0.55), inset 0 1px 0 rgba(255,255,255,0.2) !important;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    padding: 12px 24px !important;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.2s ease !important;
     cursor: pointer !important;
 }
 
 div[data-testid="stButton"] button:hover {
-    background: linear-gradient(135deg, #ff3342 0%, #d61825 100%) !important;
-    box-shadow: 0 0 40px rgba(255, 51, 66, 0.85), inset 0 1px 0 rgba(255,255,255,0.3) !important;
-    transform: translateY(-2px) scale(1.02) !important;
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%) !important;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45) !important;
+    transform: translateY(-2px) !important;
 }
 </style>
 
@@ -307,7 +266,6 @@ div[data-testid="stButton"] button:hover {
 <div class="intro-grid"></div>
 
 <div class="neural-stage">
-<div class="sweep-beam"></div>
 
 <!-- 3D NEURAL CORE -->
 <div class="neural-core-wrap">
@@ -331,7 +289,7 @@ div[data-testid="stButton"] button:hover {
 <div class="status-badge">⚡ AI-Powered Career Intelligence Platform</div>
 <h1 class="title-main">NEXORA</h1>
 <div class="subtitle-main">AI-POWERED CAREER INTELLIGENCE</div>
-<div style="font-size: 13px; color: #b8abad; font-weight: 700; letter-spacing: 1px; margin-top: 10px;">Resume Analysis • ATS Optimization • Job Matching • Career Growth</div>
+<div style="font-size: 13px; color: #94A3B8; font-weight: 500; margin-top: 10px;">Resume Analysis • ATS Optimization • Job Matching • Career Growth</div>
 </div>
 </div>
 """

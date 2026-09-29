@@ -22,29 +22,29 @@ def render_resume_rewrite_tab(analysis_data, resume_id=None):
         empty_html = textwrap.dedent("""
         <div style="
             margin: 25px 0; padding: 40px 30px; text-align: center;
-            background: linear-gradient(145deg, rgba(22, 11, 14, 0.95), rgba(12, 9, 10, 0.95));
-            border: 1px dashed rgba(255, 45, 60, 0.35); border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #111827;
+            border: 1px dashed #263247; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         ">
             <div style="font-size: 42px; margin-bottom: 12px;">✍️</div>
-            <h3 style="color:#ffffff; font-family:'Space Grotesk', sans-serif; font-size:24px; margin-bottom:10px;">
+            <h3 style="color:#F8FAFC; font-family:'Space Grotesk', sans-serif; font-size:24px; margin-bottom:10px;">
                 Upload your resume to unlock AI-powered rewriting.
             </h3>
-            <p style="color:#a89d9f; font-size:14px; max-width:620px; margin: 0 auto 25px; line-height:1.6;">
+            <p style="color:#94A3B8; font-size:14px; max-width:620px; margin: 0 auto 25px; line-height:1.6;">
                 Upload your PDF/DOCX resume in the <b>Resume Intelligence Workspace</b> above and click <b>ANALYZE MY RESUME</b> to generate a factually accurate, ATS-optimized rewrite.
             </p>
             <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; text-align:left; max-width:750px; margin:0 auto;">
-                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:12px 16px; border-radius:8px; flex:1; min-width:200px;">
-                    <div style="color:#ff5a64; font-weight:800; font-size:11px;">01 ANALYZE</div>
-                    <div style="color:#ddd; font-size:12px; margin-top:4px;">Extract skills, experience & sections</div>
+                <div style="background:#172033; border:1px solid #263247; padding:12px 16px; border-radius:8px; flex:1; min-width:200px;">
+                    <div style="color:#3B82F6; font-weight:700; font-size:11px;">01 ANALYZE</div>
+                    <div style="color:#CBD5E1; font-size:12px; margin-top:4px;">Extract skills, experience & sections</div>
                 </div>
-                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:12px 16px; border-radius:8px; flex:1; min-width:200px;">
-                    <div style="color:#ff5a64; font-weight:800; font-size:11px;">02 AUDIT</div>
-                    <div style="color:#ddd; font-size:12px; margin-top:4px;">Identify weak phrases & ATS gaps</div>
+                <div style="background:#172033; border:1px solid #263247; padding:12px 16px; border-radius:8px; flex:1; min-width:200px;">
+                    <div style="color:#3B82F6; font-weight:700; font-size:11px;">02 AUDIT</div>
+                    <div style="color:#CBD5E1; font-size:12px; margin-top:4px;">Identify weak phrases & ATS gaps</div>
                 </div>
-                <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:12px 16px; border-radius:8px; flex:1; min-width:200px;">
-                    <div style="color:#ff5a64; font-weight:800; font-size:11px;">03 REWRITE</div>
-                    <div style="color:#ddd; font-size:12px; margin-top:4px;">Enhance bullet points & keywords</div>
+                <div style="background:#172033; border:1px solid #263247; padding:12px 16px; border-radius:8px; flex:1; min-width:200px;">
+                    <div style="color:#3B82F6; font-weight:700; font-size:11px;">03 REWRITE</div>
+                    <div style="color:#CBD5E1; font-size:12px; margin-top:4px;">Enhance bullet points & keywords</div>
                 </div>
             </div>
         </div>
@@ -76,30 +76,30 @@ def render_resume_rewrite_tab(analysis_data, resume_id=None):
     # ----------------------------------------------------
     header_html = textwrap.dedent("""
     <div style="
-        background: linear-gradient(135deg, rgba(30, 15, 20, 0.95), rgba(15, 10, 12, 0.95));
-        border: 1px solid rgba(255, 45, 60, 0.35);
+        background: #111827;
+        border: 1px solid #263247;
         border-radius: 12px;
         padding: 24px 28px;
         margin-bottom: 24px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     ">
         <div style="
             display: inline-block;
-            color: #ff4d58;
+            color: #3B82F6;
             font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 3px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
             padding: 4px 14px;
-            background: rgba(220, 25, 40, 0.15);
-            border: 1px solid rgba(255, 60, 75, 0.35);
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
             border-radius: 999px;
             margin-bottom: 10px;
         ">AI RESUME REWRITER</div>
-        <h2 style="font-family:'Space Grotesk', sans-serif; font-size:28px; font-weight:900; color:#ffffff; margin:0 0 6px 0;">
+        <h2 style="font-family:'Space Grotesk', sans-serif; font-size:28px; font-weight:800; color:#F8FAFC; margin:0 0 6px 0;">
             Transform Your Resume into a Stronger, ATS-Friendly Resume
         </h2>
-        <p style="color:#b8acae; font-size:14px; margin:0; line-height:1.5;">
+        <p style="color:#CBD5E1; font-size:14px; margin:0; line-height:1.5;">
             Reconstruct your resume using AI-driven action verbs, keyword optimization, and executive formatting based 100% on your real experience.
         </p>
     </div>
@@ -298,8 +298,8 @@ def render_resume_rewrite_tab(analysis_data, resume_id=None):
 
         card_html = textwrap.dedent("""
         <div style="
-            background: rgba(18, 10, 14, 0.95);
-            border: 1px solid rgba(255, 45, 60, 0.3);
+            background: #111827;
+            border: 1px solid #263247;
             border-radius: 12px;
             padding: 24px 30px;
             margin-bottom: 20px;
